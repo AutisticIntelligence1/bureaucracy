@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MessageCircle, Stamp, FileText, Clock, FileCheck } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MessageCircle, Stamp, FileText, Clock, FileCheck, Coffee, Mailbox, PenTool, Copy, AlertTriangle } from 'lucide-react';
 import bannerImage from '../assets/Banner.jpg';
 import logoImage from '../assets/LOGO.jpg';
 import manLookingImage from '../assets/MAN looking.jpg';
@@ -26,52 +26,95 @@ const PaperPattern = () => (
 );
 
 const BureaucracyWebsite: React.FC = () => {
-    const [formNumber] = useState(`${Math.floor(Math.random() * 9999)}-${String.fromCharCode(65 + Math.floor(Math.random() * 26))}`);
+    const [formNumber] = useState(Math.floor(Math.random() * 999999) + 1);
+    const [waitTime, setWaitTime] = useState('∞');
+    const [statusIndex, setStatusIndex] = useState(0);
 
     const bureaucraticStatuses = [
-        "Form pending approval from departments A through Z",
-        "Waiting for signature from retired employee",
-        "Please resubmit in triplicate",
-        "Lost in interdepartmental mail",
-        "Coffee stained - requires reprocessing"
+        {
+            icon: <FileText className="text-red-600 h-5 w-5" />,
+            text: "Form pending approval from departments A through Z"
+        },
+        {
+            icon: <PenTool className="text-red-600 h-5 w-5" />,
+            text: "Waiting for signature from retired employee"
+        },
+        {
+            icon: <Copy className="text-red-600 h-5 w-5" />,
+            text: "Please resubmit in triplicate"
+        },
+        {
+            icon: <Mailbox className="text-red-600 h-5 w-5" />,
+            text: "Lost in interdepartmental mail"
+        },
+        {
+            icon: <Coffee className="text-red-600 h-5 w-5" />,
+            text: "Coffee stained - requires reprocessing"
+        },
+        {
+            icon: <AlertTriangle className="text-red-600 h-5 w-5" />,
+            text: "Form 27B/6 missing proper coversheets"
+        },
+        {
+            icon: <Clock className="text-red-600 h-5 w-5" />,
+            text: "Lunch break - return in 5 business years"
+        }
     ];
 
+    // Rotate status every 3 seconds
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setStatusIndex((prev) => (prev + 1) % bureaucraticStatuses.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // Random wait time generator
+    const generateWaitTime = () => {
+        const units = ['centuries', 'millennia', 'eons', 'business days', 'light years'];
+        const numbers = ['∞', '42', '404', '1984', '999999'];
+        const unit = units[Math.floor(Math.random() * units.length)];
+        const number = numbers[Math.floor(Math.random() * numbers.length)];
+        setWaitTime(`${number} ${unit}`);
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            generateWaitTime();
+        }, 10000); // Changed to 10 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <div className="min-h-screen bg-[#1a1f2c] relative">
+        <div className="min-h-screen bg-[#1a1f2c] text-white relative">
             {/* Background Pattern */}
-            <div className="fixed inset-0 pointer-events-none">
-                <PaperPattern />
+            <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0" style={{ backgroundImage: `url(${PaperPattern})` }} />
             </div>
 
-            {/* Static Red Tape */}
-            <div className="fixed inset-0 pointer-events-none">
-                {[...Array(5)].map((_, i) => (
-                    <div
-                        key={i}
-                        className="absolute w-full h-2 bg-red-800/10"
-                        style={{
-                            top: `${20 + i * 20}%`,
-                            transform: `rotate(${i % 2 ? 3 : -3}deg)`,
-                        }}
-                    />
-                ))}
+            {/* Red Tape Overlay */}
+            <div className="absolute inset-0">
+                <div className="h-4 bg-red-600/20 transform -rotate-45 translate-y-[40vh]" />
+                <div className="h-4 bg-red-600/20 transform rotate-45 translate-y-[60vh]" />
             </div>
 
             {/* Header */}
             <header className="sticky top-0 z-50 bg-[#1a1f2c]/90 backdrop-blur border-b border-red-900/30">
-                <div className="container mx-auto px-4 py-4">
-                    <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-4">
-                            <img src={logoImage} alt="Bureau Seal" className="h-16 w-16" />
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-bold text-red-600">$BRCRC</span>
-                                <span className="text-sm text-gray-400">Form #{formNumber}</span>
+                <div className="border-b border-red-900/30 py-3">
+                    <div className="container mx-auto px-4">
+                        <div className="flex justify-between items-center">
+                            {/* Logo and Form Section */}
+                            <div className="flex items-center gap-4 w-[200px]">
+                                <img src={logoImage} alt="Bureau Seal" className="h-10 w-10" />
+                                <div className="flex flex-col">
+                                    <span className="text-xl font-bold text-red-600">$BRCRC</span>
+                                    <span className="text-xs text-gray-400">Form #{formNumber}</span>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="flex items-center gap-6">
                             {/* Social Icons */}
-                            <div className="flex gap-4">
+                            <div className="flex gap-6 justify-center w-[300px]">
                                 <a href="https://t.me/Bureaucracy_BRCRC"
                                    target="_blank"
                                    rel="noopener noreferrer"
@@ -94,10 +137,12 @@ const BureaucracyWebsite: React.FC = () => {
                                 </a>
                             </div>
 
-                            <div className="text-right">
+                            {/* Wait Time Display */}
+                            <div className="text-right group cursor-pointer w-[200px]" onClick={generateWaitTime}>
                                 <div className="text-sm text-gray-400">Current Wait Time:</div>
-                                <div className="text-xl text-red-600 font-mono">∞ minutes</div>
-                                <div className="text-xs text-gray-500">Please take a number and wait forever</div>
+                                <div className="text-xl text-red-600 font-mono group-hover:scale-105 transition-transform">
+                                    {waitTime}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -136,8 +181,8 @@ const BureaucracyWebsite: React.FC = () => {
                                 <div className="text-red-500 font-bold mb-2">Current Status:</div>
                                 {bureaucraticStatuses.map((status, index) => (
                                     <div key={index} className="flex items-center text-gray-400 mb-2">
-                                        <span className="mr-2">📋</span>
-                                        {status}
+                                        <span className="mr-2">{status.icon}</span>
+                                        {status.text}
                                     </div>
                                 ))}
                             </div>
