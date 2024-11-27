@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, BarChart2, Stamp, FileText, Clock, FileCheck } from 'lucide-react';
+import { MessageCircle, Stamp, FileText, Clock, FileCheck } from 'lucide-react';
 import bannerImage from '../assets/Banner.jpg';
 import logoImage from '../assets/LOGO.jpg';
 import manLookingImage from '../assets/MAN looking.jpg';
