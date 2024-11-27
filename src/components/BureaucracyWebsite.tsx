@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, Stamp, FileText, Clock, FileCheck, Coffee, Mailbox, PenTool, Copy, AlertTriangle } from 'lucide-react';
+import { MessageCircle, Stamp, FileText, Clock, FileCheck, Coffee, Mailbox, PenTool, Copy, AlertTriangle, ClipboardCopy } from 'lucide-react';
 import bannerImage from '../assets/Banner.jpg';
 import logoImage from '../assets/LOGO.jpg';
 import manLookingImage from '../assets/MAN looking.jpg';
 import muskTweetImage from '../assets/Musk tweet.jpg';
 import dextoolsIcon from '../assets/Dextools.png';
+import dexscreenerIcon from '../assets/dexscreenerlogo1.png';
 
 // Background Pattern Component
 const PaperPattern = () => (
@@ -28,6 +29,19 @@ const PaperPattern = () => (
 const BureaucracyWebsite: React.FC = () => {
     const [waitTime, setWaitTime] = useState<string>('404 business days');
     const [formNumber] = useState(() => Math.floor(Math.random() * 90000) + 10000);
+    const [copySuccess, setCopySuccess] = useState(false);
+
+    const contractAddress = 'AiZRN7k9n1ursX2rJKuaNX9J2Q4Eq5vtDBmonNsZpump';
+
+    const copyToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(contractAddress);
+            setCopySuccess(true);
+            setTimeout(() => setCopySuccess(false), 2000);
+        } catch (err) {
+            console.error('Failed to copy text: ', err);
+        }
+    };
 
     const bureaucraticStatuses = [
         {
@@ -124,7 +138,13 @@ const BureaucracyWebsite: React.FC = () => {
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
-                                    <img src={dextoolsIcon} alt="Dextools" className="h-5 w-14 sm:h-6 sm:w-16 object-contain" />
+                                    <img src={dextoolsIcon} alt="Dextools" className="h-8 w-28 sm:h-10 sm:w-32 object-contain" />
+                                </a>
+                                <a href="https://dexscreener.com/solana/dpbyne6qddo1ijr97tv3zah8say211t3nrw3sy762t9g"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
+                                    <img src={dexscreenerIcon} alt="Dexscreener" className="h-8 w-28 sm:h-10 sm:w-32 object-contain" />
                                 </a>
                             </div>
 
@@ -136,6 +156,23 @@ const BureaucracyWebsite: React.FC = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                {/* Contract Address Bar */}
+                <div className="py-2 px-4">
+                    <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+                        <span className="text-gray-400">Contract:</span>
+                        <code className="bg-[#232936] px-3 py-1 rounded font-mono text-red-600">{contractAddress}</code>
+                        <button 
+                            onClick={copyToClipboard}
+                            className="p-1.5 hover:bg-[#2a3142] rounded-lg transition-all duration-300 text-red-600"
+                            title="Copy contract address"
+                        >
+                            <ClipboardCopy className="h-4 w-4 sm:h-5 sm:w-5" />
+                        </button>
+                        {copySuccess && (
+                            <span className="text-green-500 text-sm">Copied!</span>
+                        )}
                     </div>
                 </div>
             </header>
