@@ -137,14 +137,14 @@ const BureaucracyWebsite: React.FC = () => {
                                 <a href="https://www.dextools.io/app/en/solana/pair-explorer/DPbyNE6qDdo1iJr97Tv3ZAh8sAy211t3NRW3SY762t9g"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
-                                    <img src={dextoolsIcon} alt="Dextools" className="h-8 w-28 sm:h-10 sm:w-32 object-contain" />
+                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300 flex items-center">
+                                    <img src={dextoolsIcon} alt="Dextools" className="h-7 w-24 sm:h-8 sm:w-28 object-contain" />
                                 </a>
                                 <a href="https://dexscreener.com/solana/dpbyne6qddo1ijr97tv3zah8say211t3nrw3sy762t9g"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
-                                    <img src={dexscreenerIcon} alt="Dexscreener" className="h-8 w-28 sm:h-10 sm:w-32 object-contain" />
+                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300 flex items-center">
+                                    <img src={dexscreenerIcon} alt="Dexscreener" className="h-7 sm:h-8 object-contain" style={{ width: 'auto' }} />
                                 </a>
                             </div>
 
