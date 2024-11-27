@@ -62,8 +62,8 @@ const BureaucracyWebsite: React.FC = () => {
 
     // Random wait time generator
     const generateWaitTime = () => {
-        const units = ['centuries', 'millennia', 'eons', 'business days', 'light years'];
-        const numbers = ['∞', '42', '404', '1984', '999999'];
+        const units = ['centuries', 'millennia', 'eons', 'business days', 'years'];
+        const numbers = ['∞', '42', '404', '1984', '9000'];
         const unit = units[Math.floor(Math.random() * units.length)];
         const number = numbers[Math.floor(Math.random() * numbers.length)];
         setWaitTime(`${number} ${unit}`);
@@ -86,52 +86,52 @@ const BureaucracyWebsite: React.FC = () => {
 
             {/* Red Tape Overlay */}
             <div className="absolute inset-0">
-                <div className="h-4 bg-red-600/20 transform -rotate-45 translate-y-[40vh]" />
-                <div className="h-4 bg-red-600/20 transform rotate-45 translate-y-[60vh]" />
+                <div className="h-4 bg-red-600/20 transform -rotate-45 translate-y-[90vh]" />
+                <div className="h-4 bg-red-600/20 transform rotate-45 translate-y-[110vh]" />
             </div>
 
             {/* Header */}
             <header className="sticky top-0 z-50 bg-[#1a1f2c]/90 backdrop-blur border-b border-red-900/30">
-                <div className="border-b border-red-900/30 py-3">
+                <div className="border-b border-red-900/30 py-2 sm:py-3">
                     <div className="container mx-auto px-4">
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0">
                             {/* Logo and Form Section */}
-                            <div className="flex items-center gap-4 w-[200px]">
-                                <img src={logoImage} alt="Bureau Seal" className="h-10 w-10" />
+                            <div className="flex items-center gap-4 w-full sm:w-[200px]">
+                                <img src={logoImage} alt="Bureau Seal" className="h-8 w-8 sm:h-10 sm:w-10" />
                                 <div className="flex flex-col">
-                                    <span className="text-xl font-bold text-red-600">$BRCRC</span>
+                                    <span className="text-lg sm:text-xl font-bold text-red-600">$BRCRC</span>
                                     <span className="text-xs text-gray-400">Form #{formNumber}</span>
                                 </div>
                             </div>
 
                             {/* Social Icons */}
-                            <div className="flex gap-6 justify-center w-[300px]">
+                            <div className="flex gap-4 sm:gap-6 justify-center w-full sm:w-[300px]">
                                 <a href="https://t.me/Bureaucracy_BRCRC"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className="p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
-                                    <MessageCircle className="h-6 w-6 text-red-600" />
+                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
+                                    <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" />
                                 </a>
                                 <a href="https://x.com/STOPBRCRC"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className="p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
-                                    <svg className="h-6 w-6 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
+                                    <svg className="h-5 w-5 sm:h-6 sm:w-6 text-red-600" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                                     </svg>
                                 </a>
                                 <a href="https://www.dextools.io/app/en/solana/pair-explorer/DPbyNE6qDdo1iJr97Tv3ZAh8sAy211t3NRW3SY762t9g"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   className="p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
-                                    <img src={dextoolsIcon} alt="Dextools" className="h-6 w-16 object-contain" />
+                                   className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300">
+                                    <img src={dextoolsIcon} alt="Dextools" className="h-5 w-14 sm:h-6 sm:w-16 object-contain" />
                                 </a>
                             </div>
 
                             {/* Wait Time Display */}
-                            <div className="text-right group cursor-pointer w-[200px]" onClick={generateWaitTime}>
-                                <div className="text-sm text-gray-400">Current Wait Time:</div>
-                                <div className="text-xl text-red-600 font-mono group-hover:scale-105 transition-transform">
+                            <div className="text-center sm:text-right group cursor-pointer w-full sm:w-[200px]" onClick={generateWaitTime}>
+                                <div className="text-xs sm:text-sm text-gray-400">Current Wait Time:</div>
+                                <div className="text-lg sm:text-xl text-red-600 font-mono group-hover:scale-105 transition-transform">
                                     {waitTime}
                                 </div>
                             </div>
@@ -144,14 +144,14 @@ const BureaucracyWebsite: React.FC = () => {
             <div className="relative">
                 <img
                     src={bannerImage}
-                    alt="Bureaucratic Office"
-                    className="w-full h-[500px] object-cover object-center"
+                    alt="Bureaucracy Banner"
+                    className="w-full h-[200px] sm:h-[300px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1a1f2c]" />
             </div>
 
             {/* Main Content */}
-            <div className="container mx-auto px-4 -mt-32 relative z-10">
+            <div className="container mx-auto px-4 mt-32 relative z-10">
                 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
                     {/* Bureaucrat Section */}
                     <div className="bg-[#232936] rounded-lg p-8 border border-red-900/30">
