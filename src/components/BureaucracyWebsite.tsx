@@ -26,9 +26,8 @@ const PaperPattern = () => (
 );
 
 const BureaucracyWebsite: React.FC = () => {
-    const [formNumber] = useState(Math.floor(Math.random() * 999999) + 1);
-    const [waitTime, setWaitTime] = useState('∞');
-    const [statusIndex, setStatusIndex] = useState(0);
+    const [waitTime, setWaitTime] = useState<string>('404 business days');
+    const [formNumber] = useState(() => Math.floor(Math.random() * 90000) + 10000);
 
     const bureaucraticStatuses = [
         {
@@ -60,14 +59,6 @@ const BureaucracyWebsite: React.FC = () => {
             text: "Lunch break - return in 5 business years"
         }
     ];
-
-    // Rotate status every 3 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setStatusIndex((prev) => (prev + 1) % bureaucraticStatuses.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, []);
 
     // Random wait time generator
     const generateWaitTime = () => {
