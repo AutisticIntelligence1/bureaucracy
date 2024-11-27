@@ -5,7 +5,7 @@ import logoImage from '../assets/LOGO.jpg';
 import manLookingImage from '../assets/MAN looking.jpg';
 import muskTweetImage from '../assets/Musk tweet.jpg';
 import dextoolsIcon from '../assets/Dextools.png';
-import dexscreenerIcon from '../assets/dexscreenerlogo1.png';
+import dexscreenerIcon from '../assets/logodex.png';
 
 // Background Pattern Component
 const PaperPattern = () => (
@@ -138,13 +138,13 @@ const BureaucracyWebsite: React.FC = () => {
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300 flex items-center">
-                                    <img src={dextoolsIcon} alt="Dextools" className="h-7 w-24 sm:h-8 sm:w-28 object-contain" />
+                                    <img src={dextoolsIcon} alt="Dextools" className="h-8 w-28 sm:h-10 sm:w-36 object-contain" />
                                 </a>
                                 <a href="https://dexscreener.com/solana/dpbyne6qddo1ijr97tv3zah8say211t3nrw3sy762t9g"
                                    target="_blank"
                                    rel="noopener noreferrer"
                                    className="p-1.5 sm:p-2 hover:bg-[#2a3142] rounded-lg transition-all duration-300 flex items-center">
-                                    <img src={dexscreenerIcon} alt="Dexscreener" className="h-7 sm:h-8 object-contain" style={{ width: 'auto' }} />
+                                    <img src={dexscreenerIcon} alt="Dexscreener" className="h-6 w-20 sm:h-7 sm:w-24 object-contain" />
                                 </a>
                             </div>
 
